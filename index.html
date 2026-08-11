@@ -1,6 +1,6 @@
 ```html
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +8,16 @@
 <title>V2GURD — Route Visualizer</title>
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root{
     --green:#39ff88;
-    --blue:#20a9ff;
-    --red:#ff3b62;
+    --blue:#2196ff;
+    --red:#ff4164;
     --bg:#020608;
-    --glass:rgba(7,18,23,.68);
-    --border:rgba(57,255,136,.14);
     --text:#effff6;
     --muted:#71877e;
+    --border:rgba(57,255,136,.14);
 }
 
 *{
@@ -28,12 +26,16 @@
     padding:0;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     min-height:100vh;
     overflow-x:hidden;
     background:#020608;
     color:var(--text);
-    font-family:"Vazirmatn",sans-serif;
+    font-family:Inter,Arial,sans-serif;
 }
 
 
@@ -61,16 +63,13 @@ body{
     background-size:45px 45px;
 }
 
-
 .code{
     position:absolute;
 
     color:rgba(57,255,136,.10);
 
     font-family:monospace;
-
     font-size:11px;
-
     letter-spacing:2px;
 
     white-space:nowrap;
@@ -79,15 +78,14 @@ body{
 }
 
 .code.blue{
-    color:rgba(32,169,255,.11);
+    color:rgba(33,150,255,.11);
 }
 
 .code.red{
-    color:rgba(255,59,98,.09);
+    color:rgba(255,65,100,.09);
 }
 
 @keyframes moveCode{
-
     from{
         transform:translateX(-30vw);
     }
@@ -95,12 +93,11 @@ body{
     to{
         transform:translateX(130vw);
     }
-
 }
 
 
 /* =========================
-   GLOW
+   BACKGROUND GLOW
 ========================= */
 
 .glow{
@@ -112,26 +109,31 @@ body{
     border-radius:50%;
 
     filter:blur(120px);
-
     opacity:.12;
 
     z-index:-5;
-
     pointer-events:none;
 }
 
 .glow.green{
     background:var(--green);
-
     left:-180px;
     top:-160px;
 }
 
 .glow.blue{
     background:var(--blue);
-
     right:-180px;
     bottom:-100px;
+}
+
+.glow.red{
+    background:var(--red);
+    left:45%;
+    top:40%;
+    width:280px;
+    height:280px;
+    opacity:.045;
 }
 
 
@@ -140,11 +142,8 @@ body{
 ========================= */
 
 header{
-
     position:sticky;
-
     top:0;
-
     z-index:20;
 
     background:rgba(2,7,9,.72);
@@ -152,10 +151,10 @@ header{
     border-bottom:1px solid var(--border);
 
     backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
 }
 
 .nav{
-
     width:min(1100px,calc(100% - 30px));
 
     margin:auto;
@@ -165,40 +164,34 @@ header{
     display:flex;
 
     justify-content:space-between;
-
     align-items:center;
 }
 
-
 .brand{
-
     display:flex;
-
     align-items:center;
-
     gap:8px;
 }
 
 .logo{
-
     font-size:22px;
-
     font-weight:800;
-
     letter-spacing:1px;
 }
 
-.verify{
 
+/* BLUE VERIFIED BADGE */
+
+.verify{
     display:inline-flex;
 
     justify-content:center;
-
     align-items:center;
 
     width:20px;
-
     height:20px;
+
+    margin-left:3px;
 
     border-radius:50%;
 
@@ -207,13 +200,14 @@ header{
     color:white;
 
     font-size:12px;
+    font-weight:800;
 
     box-shadow:
-        0 0 12px rgba(22,143,255,.7);
+        0 0 8px rgba(22,143,255,.65),
+        0 0 18px rgba(22,143,255,.35);
 }
 
 .subtitle{
-
     font-size:8px;
 
     color:#50655d;
@@ -223,9 +217,7 @@ header{
     margin-top:2px;
 }
 
-
 .live{
-
     display:flex;
 
     align-items:center;
@@ -246,9 +238,7 @@ header{
 }
 
 .live-dot{
-
     width:7px;
-
     height:7px;
 
     border-radius:50%;
@@ -261,12 +251,10 @@ header{
 }
 
 @keyframes pulse{
-
     50%{
         opacity:.3;
         transform:scale(.65);
     }
-
 }
 
 
@@ -275,7 +263,6 @@ header{
 ========================= */
 
 main{
-
     width:min(900px,calc(100% - 28px));
 
     margin:auto;
@@ -283,16 +270,13 @@ main{
     padding:55px 0 80px;
 }
 
-
 .hero{
-
     text-align:center;
 
     margin-bottom:40px;
 }
 
 .eyebrow{
-
     color:var(--green);
 
     font-size:9px;
@@ -303,7 +287,6 @@ main{
 }
 
 h1{
-
     font-size:clamp(32px,6vw,58px);
 
     font-weight:800;
@@ -312,7 +295,6 @@ h1{
 }
 
 h1 span{
-
     color:var(--green);
 
     text-shadow:
@@ -320,7 +302,6 @@ h1 span{
 }
 
 .description{
-
     margin:15px auto 0;
 
     max-width:600px;
@@ -338,7 +319,6 @@ h1 span{
 ========================= */
 
 .route{
-
     position:relative;
 
     display:flex;
@@ -351,26 +331,23 @@ h1 span{
 }
 
 
-/* CENTRAL LINE */
+/* MAIN LINE */
 
 .route-line{
-
     position:absolute;
 
     top:80px;
-
     bottom:80px;
 
     width:2px;
 
     background:
-
         linear-gradient(
             to bottom,
             transparent,
             rgba(57,255,136,.45),
-            rgba(32,169,255,.55),
-            rgba(255,59,98,.4),
+            rgba(33,150,255,.55),
+            rgba(255,65,100,.4),
             transparent
         );
 
@@ -379,14 +356,12 @@ h1 span{
 }
 
 
-/* MOVING PULSE */
+/* MOVING LIGHT */
 
 .pulse-line{
-
     position:absolute;
 
     top:80px;
-
     bottom:80px;
 
     width:3px;
@@ -397,17 +372,14 @@ h1 span{
 }
 
 .pulse-line::after{
-
     content:"";
 
     position:absolute;
 
     width:100%;
-
     height:90px;
 
     background:
-
         linear-gradient(
             to bottom,
             transparent,
@@ -423,7 +395,6 @@ h1 span{
 }
 
 @keyframes travel{
-
     from{
         transform:translateY(-100px);
     }
@@ -431,16 +402,14 @@ h1 span{
     to{
         transform:translateY(900px);
     }
-
 }
 
 
 /* =========================
-   NODE
+   NODE CARD
 ========================= */
 
 .node{
-
     position:relative;
 
     z-index:5;
@@ -463,6 +432,7 @@ h1 span{
         );
 
     backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
 
     box-shadow:
         0 20px 50px rgba(0,0,0,.25);
@@ -473,7 +443,6 @@ h1 span{
 }
 
 .node:hover{
-
     transform:translateY(-4px);
 
     border-color:rgba(57,255,136,.35);
@@ -483,9 +452,7 @@ h1 span{
         0 0 30px rgba(57,255,136,.07);
 }
 
-
 .icon{
-
     font-size:36px;
 
     line-height:1;
@@ -498,16 +465,12 @@ h1 span{
         );
 }
 
-
 .node-title{
-
     font-size:17px;
-
     font-weight:700;
 }
 
 .node-sub{
-
     color:var(--muted);
 
     font-size:9px;
@@ -519,11 +482,10 @@ h1 span{
 
 
 /* =========================
-   PING
+   CONNECTION
 ========================= */
 
 .connection{
-
     position:relative;
 
     z-index:10;
@@ -536,15 +498,12 @@ h1 span{
 
     gap:5px;
 
-    margin:0;
-
     min-height:54px;
 
     justify-content:center;
 }
 
 .ping{
-
     color:var(--blue);
 
     font-family:monospace;
@@ -559,16 +518,15 @@ h1 span{
 
     border-radius:20px;
 
-    border:1px solid rgba(32,169,255,.18);
+    border:1px solid rgba(33,150,255,.18);
 
-    background:rgba(32,169,255,.05);
+    background:rgba(33,150,255,.05);
 
     box-shadow:
-        0 0 18px rgba(32,169,255,.05);
+        0 0 18px rgba(33,150,255,.05);
 }
 
 .arrow{
-
     color:var(--green);
 
     font-size:18px;
@@ -577,22 +535,18 @@ h1 span{
 }
 
 @keyframes arrowPulse{
-
     50%{
         transform:translateY(4px);
-
         opacity:.5;
     }
-
 }
 
 
 /* =========================
-   STATUS
+   METRICS
 ========================= */
 
 .status-card{
-
     margin-top:35px;
 
     display:grid;
@@ -604,7 +558,6 @@ h1 span{
 }
 
 .metric{
-
     padding:17px 10px;
 
     text-align:center;
@@ -616,10 +569,10 @@ h1 span{
     background:rgba(5,14,18,.6);
 
     backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
 }
 
 .metric small{
-
     display:block;
 
     color:#586c65;
@@ -630,12 +583,10 @@ h1 span{
 }
 
 .metric strong{
-
     font-size:15px;
 }
 
 .stable{
-
     color:var(--green);
 }
 
@@ -645,7 +596,6 @@ h1 span{
 ========================= */
 
 .info{
-
     margin-top:15px;
 
     padding:17px;
@@ -664,8 +614,126 @@ h1 span{
 }
 
 .info b{
+    color:var(--green);
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects{
+    margin-top:28px;
+}
+
+.projects-title{
+    text-align:center;
+
+    margin-bottom:14px;
+}
+
+.projects-title span{
+    color:var(--green);
+
+    font-size:8px;
+
+    letter-spacing:3px;
+}
+
+.projects-title h2{
+    margin-top:6px;
+
+    font-size:18px;
+}
+
+.project-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+}
+
+.project-card{
+    text-decoration:none;
+
+    color:var(--text);
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    border:1px solid rgba(57,255,136,.12);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(8,24,30,.75),
+            rgba(3,10,14,.65)
+        );
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    transition:.3s;
+}
+
+.project-card:hover{
+    transform:translateY(-4px);
+
+    border-color:rgba(57,255,136,.35);
+
+    box-shadow:
+        0 0 30px rgba(57,255,136,.08);
+}
+
+.project-icon{
+    width:42px;
+    height:42px;
+
+    flex-shrink:0;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:rgba(57,255,136,.06);
+
+    font-size:20px;
+}
+
+.project-card strong{
+    display:block;
+
+    font-size:11px;
+}
+
+.project-card small{
+    display:block;
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:8px;
+}
+
+.project-arrow{
+    margin-left:auto;
 
     color:var(--green);
+
+    font-size:18px;
 }
 
 
@@ -674,7 +742,6 @@ h1 span{
 ========================= */
 
 footer{
-
     text-align:center;
 
     color:#3c5048;
@@ -685,7 +752,6 @@ footer{
 }
 
 footer b{
-
     color:#71877e;
 }
 
@@ -697,28 +763,48 @@ footer b{
 @media(max-width:600px){
 
     main{
-
         padding-top:40px;
     }
 
     .status-card{
-
         grid-template-columns:
             repeat(2,1fr);
     }
 
     .node{
-
         padding:20px 15px;
     }
 
     .live{
-
         font-size:8px;
+    }
+
+    .project-grid{
+        grid-template-columns:1fr;
+    }
+
+    .logo{
+        font-size:19px;
     }
 
 }
 
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+    }
+
+}
 </style>
 </head>
 
@@ -726,7 +812,9 @@ footer b{
 <body>
 
 
-<!-- BACKGROUND -->
+<!-- =========================
+     BACKGROUND
+========================= -->
 
 <div class="cyber" id="cyber"></div>
 
@@ -734,8 +822,12 @@ footer b{
 
 <div class="glow blue"></div>
 
+<div class="glow red"></div>
 
-<!-- HEADER -->
+
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -749,9 +841,7 @@ footer b{
 
                     V2GURD
 
-                    <span class="verify">
-                        ✓
-                    </span>
+                    <span class="verify">✓</span>
 
                 </div>
 
@@ -778,6 +868,10 @@ footer b{
 
 
 
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
 
 
@@ -790,26 +884,22 @@ footer b{
         </div>
 
         <h1>
-
             ROUTE
-            <span>
-                VISUALIZER
-            </span>
-
+            <span>VISUALIZER</span>
         </h1>
 
         <p class="description">
-
-            نمایش مسیر ارتباطی از کاربر تا مقصد
-            به صورت گرافیکی و لحظه‌ای
-
+            Visual representation of the network path
+            from user to destination.
         </p>
 
     </section>
 
 
 
-    <!-- ROUTE -->
+    <!-- =========================
+         ROUTE
+    ========================= -->
 
     <section class="route">
 
@@ -838,7 +928,7 @@ footer b{
         </div>
 
 
-        <!-- CONNECTION -->
+        <!-- PING -->
 
         <div class="connection">
 
@@ -872,7 +962,7 @@ footer b{
         </div>
 
 
-        <!-- CONNECTION -->
+        <!-- PING -->
 
         <div class="connection">
 
@@ -906,7 +996,7 @@ footer b{
         </div>
 
 
-        <!-- CONNECTION -->
+        <!-- PING -->
 
         <div class="connection">
 
@@ -944,7 +1034,9 @@ footer b{
 
 
 
-    <!-- METRICS -->
+    <!-- =========================
+         METRICS
+    ========================= -->
 
     <section class="status-card">
 
@@ -1005,6 +1097,8 @@ footer b{
 
 
 
+    <!-- INFO -->
+
     <div class="info">
 
         V2GURD ROUTE ENGINE
@@ -1028,9 +1122,107 @@ footer b{
     </div>
 
 
+
+    <!-- =========================
+         V2GURD PROJECTS
+    ========================= -->
+
+    <section class="projects">
+
+
+        <div class="projects-title">
+
+            <span>
+                V2GURD ECOSYSTEM
+            </span>
+
+            <h2>
+                V2GURD PROJECTS
+            </h2>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+            <!-- STORE -->
+
+            <a
+                href="https://v2gurd.github.io/-v2guard.github.io/#special"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-card"
+            >
+
+                <div class="project-icon">
+                    🛒
+                </div>
+
+                <div>
+
+                    <strong>
+                        V2GURD STORE
+                    </strong>
+
+                    <small>
+                        Official V2GURD Store
+                    </small>
+
+                </div>
+
+                <span class="project-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+
+            <!-- MONITOR -->
+
+            <a
+                href="https://v2gurdmanitor.github.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="project-card"
+            >
+
+                <div class="project-icon">
+                    📡
+                </div>
+
+                <div>
+
+                    <strong>
+                        V2GURD MONITOR
+                    </strong>
+
+                    <small>
+                        Server Monitoring
+                    </small>
+
+                </div>
+
+                <span class="project-arrow">
+                    ↗
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
 </main>
 
 
+
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer>
 
@@ -1038,7 +1230,7 @@ footer b{
         V2GURD ✓
     </b>
 
-    — Route Visualizer
+    — ROUTE VISUALIZER
 
 </footer>
 
@@ -1048,18 +1240,20 @@ footer b{
 
 
 /* =========================
-   LIVE TIME
+   LIVE CLOCK
 ========================= */
 
 function updateTime(){
 
-    const now =
-        new Date();
+    const now = new Date();
 
     document.getElementById("time")
         .textContent =
         now.toLocaleTimeString(
-            "fa-IR"
+            "en-US",
+            {
+                hour12:false
+            }
         );
 
 }
@@ -1074,7 +1268,7 @@ updateTime();
 
 
 /* =========================
-   LIVE PING
+   DEMO LATENCY
 ========================= */
 
 setInterval(()=>{
@@ -1093,7 +1287,7 @@ setInterval(()=>{
 
         current +=
             Math.floor(
-                Math.random()*7
+                Math.random() * 7
             ) - 3;
 
         current =
@@ -1175,8 +1369,8 @@ const codes = [
 
 
 for(
-    let i=0;
-    i<35;
+    let i = 0;
+    i < 40;
     i++
 ){
 
@@ -1190,7 +1384,9 @@ for(
         "code";
 
 
-    if(i % 6 === 0){
+    if(
+        i % 6 === 0
+    ){
 
         item.classList.add(
             "blue"
@@ -1198,7 +1394,10 @@ for(
 
     }
 
-    if(i % 13 === 0){
+
+    if(
+        i % 13 === 0
+    ){
 
         item.classList.add(
             "red"
@@ -1210,31 +1409,31 @@ for(
     item.textContent =
         codes[
             Math.floor(
-                Math.random()*
+                Math.random() *
                 codes.length
             )
         ];
 
 
     item.style.top =
-        Math.random()*100 +
+        Math.random() * 100 +
         "%";
 
 
     item.style.left =
         (-40 -
-        Math.random()*100) +
+        Math.random() * 100) +
         "%";
 
 
     item.style.animationDuration =
         (15 +
-        Math.random()*25) +
+        Math.random() * 25) +
         "s";
 
 
     item.style.animationDelay =
-        (-Math.random()*30) +
+        (-Math.random() * 30) +
         "s";
 
 
